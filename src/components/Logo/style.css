@@ -1,0 +1,22 @@
+.logo {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 61px;
+  margin-left: 89px;
+  z-index: 100;
+  position: relative;
+}
+.logo .img_logo {
+  height: 57px;
+}
+.logo span {
+  display: inline-block;
+  color: #fff;
+  font-family: Raanana;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  z-index: 100;
+}
