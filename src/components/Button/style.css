@@ -1,0 +1,13 @@
+button {
+  width: 426px;
+  height: 64px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 auto;
+}
