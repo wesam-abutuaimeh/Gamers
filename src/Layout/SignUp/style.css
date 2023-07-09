@@ -13,7 +13,6 @@
 .sign__up__container {
   display: flex;
   height: 1024px;
-  /* Todo :: Height Decete */
 }
 .sign__up__container .left__side {
   width: 642px;
@@ -71,7 +70,6 @@
   margin: 0 auto;
   margin: 16px auto 24px auto;
 }
-
 form {
   margin: 0 auto;
 }
@@ -82,7 +80,6 @@ form {
   margin-top: 32px;
   margin-bottom: 68px;
 }
-
 .back {
   display: flex;
   align-items: center;
@@ -101,6 +98,36 @@ form {
 .sign__up__container .right__side::-webkit-scrollbar {
   display: none;
 }
-label {
-  margin-left: 17px;
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.agreement__label {
+  position: relative;
+  padding: 0 35px;
+}
+.agreement__label::before,
+.agreement__label::after {
+  position: absolute;
+  content: "";
+  border-radius: 4px;
+  cursor: pointer;
+}
+.agreement__label::before {
+  width: 24px;
+  height: 24px;
+  background: #c4c4c4;
+  left: 0;
+}
+.agreement__label::after {
+  width: 18px;
+  height: 18px;
+  background: #1565d8;
+  left: 3px;
+  top: 3px;
+  visibility: hidden;
+}
+input[type="checkbox"]:checked + .agreement__label::after {
+  visibility: visible;
 }

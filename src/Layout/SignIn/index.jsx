@@ -13,10 +13,11 @@ class SignIn extends Component {
         return <div className="sign__in__container">
             <div className="left__side" >
                 <Logo>
-                    <img src="/assets/sign__in__logo.svg" alt="" />
+                    <Picture src="/assets/sign__in__logo.svg" alt="sigin logo" />
                 </Logo>
                 <Quote color="#696F79" fontStyle="itilac" signatureColor="#696F79" />
-                <img src="/assets/sign_in_img.png" alt="SignImage" className="sign_in_img" />
+                <Picture src="/assets/sign_in_img.png" alt="sigin mage" pictureClassName="sign_in_img" />
+
             </div >
             <div className="right__side"><div className="registration__area">
                 <h1>Join the game!!</h1>

@@ -3,8 +3,9 @@ import Logo from "../../components/Logo";
 import Quote from "../../components/Quotes";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
-import "./style.css";
+import Picture from "../../components/Picture";
 import OrLine from "../../components/OrLine";
+import "./style.css";
 
 class SignUp extends Component {
     constructor(props) {
@@ -19,15 +20,15 @@ class SignUp extends Component {
         const password = e.target.value;
         this.setState({ passwordVal: password }, () => {
             const isValidPassword = regex.test(password);
-            console.log(isValidPassword ? 'Valid password' : 'Invalid password'); // TODO reomve
+            console.log(isValidPassword ? 'Valid password' : 'Invalid password'); // TODO handle stringth of password bar
         });
     }
 
     render() {
         return <div className="sign__up__container">
             <div className="left__side" >
-                <img src="/assets/dots.png" alt="dots shape" className="dots__shape" />
-                <img src="/assets/circle__shape.png" alt="circle shape" className="circle__shape" />
+                <Picture src="/assets/dots.png" alt="dots shape" pictureClassName="dots__shape" />
+                <Picture src="/assets/circle__shape.png" alt="circle shape" pictureClassName="circle__shape" />
                 <Logo>
                     <svg xmlns="http://www.w3.org/2000/svg" width="53" height="57" viewBox="0 0 53 57" fill="none">
                         <path filerule="evenodd" clipRule="evenodd" d="M36.3693 19.4904C33.9261 24.5722 28.7297 28.08 22.7141 28.08C14.351 28.08 7.57132 21.3004 7.57132 12.9373C7.57132 7.45807 10.4814 2.65854 14.8404 -8.14426e-06C6.3926 1.58395 0 8.99844 0 17.906C0 27.9679 8.15675 36.1246 18.2186 36.1246C27.7467 36.1246 35.5664 28.8104 36.3693 19.4904Z" fill="white" />
@@ -55,8 +56,10 @@ class SignUp extends Component {
                         <InputField htmlFor="create__password" title="Create Password*" type="password" placeholder="password" required={true} id="create__password"
                             className="create__password" onChange={this.handleChangePassword} />
                         <InputField htmlFor="repeat__password" title="Repeat password*" type="password" placeholder="Repeat password" required={true} id="repeat__password" className="repeat__password" />
-                        <input type="checkbox" id="agreement" className="agreement" required />
-                        <label htmlFor="agreement">I agree to terms & conditions</label>
+                        <div>
+                            <input type="checkbox" id="agreement" className="agreement" required />
+                            <label htmlFor="agreement" className="agreement__label">I agree to terms & conditions</label>
+                        </div>
                     </form>
                     <Button type="submit" componentClassName="register__btn" bgcolor="#1565D8" color="#fff" > Register Account </Button>
                     <OrLine />
