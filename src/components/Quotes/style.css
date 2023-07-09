@@ -1,17 +1,17 @@
-.qoute__body {
+.quote__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 212px;
 }
-.qoute__body img {
+.quote__body img {
   width: 28px;
   margin-left: 82px;
   margin-bottom: 20px;
   z-index: 1;
 }
-.qoute__body .qoute,
-.qoute__body span {
+.quote__body .quote,
+.quote__body span {
   width: 473px;
   height: 164px;
   color: #fff;
@@ -21,10 +21,10 @@
   margin: 0 auto;
   position: relative;
 }
-.qoute__body span {
+.quote__body span {
   margin-top: 50px;
 }
-.qoute__body .qoute svg {
+.quote__body .quote svg {
   position: absolute;
   bottom: -116px;
 }
