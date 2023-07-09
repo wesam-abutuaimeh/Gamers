@@ -58,9 +58,9 @@ class SignUp extends Component {
                         <input type="checkbox" id="agreement" className="agreement" required />
                         <label htmlFor="agreement">I agree to terms & conditions</label>
                     </form>
-                    <Button type="submit" class="register__btn" bgcolor="#1565D8" color="#fff" > Register Account </Button>
+                    <Button type="submit" componentClassName="register__btn" bgcolor="#1565D8" color="#fff" > Register Account </Button>
                     <OrLine />
-                    <Button class="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)">Login</Button>
+                    <Button componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)">Login</Button>
                 </div>
             </div>
         </div >

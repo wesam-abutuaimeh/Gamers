@@ -1,12 +1,14 @@
 import { Component } from "react";
-import "./style.css"
+import "./style.css";
 
 class Button extends Component {
     render() {
-        return (<button type={this.props.type} className={this.props.class} style={{ backgroundColor: this.props.bgcolor, color: this.props.color, boxShadow: this.props.shadow }}
-            onClick={this.props.onClick}>
-            {this.props.children}
-        </button>);
+        const { type, componentClassName, bgcolor, color, shadow, onClick, children, } = this.props;
+        return (
+            <button type={type} className={componentClassName} style={{ backgroundColor: bgcolor, color: color, boxShadow: shadow }} onClick={onClick}>
+                {children}
+            </button>
+        );
     }
 }
 

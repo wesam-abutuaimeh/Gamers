@@ -17,7 +17,6 @@ class InputField extends Component {
                     className={className} />
             </div>
         );
-
     }
 }
 export default InputField;

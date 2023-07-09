@@ -40,7 +40,7 @@ class SignIn extends Component {
                     <InputField htmlFor="email" title="Your email" type="email" placeholder="Write your email" required={true} id="email" className="email" />
                     <InputField htmlFor="create__password" title="Enter your password*" type="password" placeholder="•••••••••" required={true} id="create__password"
                         className="create__password" />
-                    <Button type="submit" class="login__btn" bgcolor="#1565D8" color="#fff" > Login </Button>
+                    <Button type="submit" componentClassName="login__btn" bgcolor="#1565D8" color="#fff" > Login </Button>
                 </form>
                 <div className="exist__account">Don’t have an account? <a href=" ">Register</a></div>
             </div>
