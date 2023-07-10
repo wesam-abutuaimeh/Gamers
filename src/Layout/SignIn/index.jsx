@@ -6,6 +6,7 @@ import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import OrLine from "../../components/OrLine";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 class SignIn extends Component {
 
@@ -43,7 +44,7 @@ class SignIn extends Component {
                         className="create__password" />
                     <Button type="submit" componentClassName="login__btn" bgcolor="#1565D8" color="#fff" > Login </Button>
                 </form>
-                <div className="exist__account">Don’t have an account? <a href=" ">Register</a></div>
+                <div className="exist__account">Don’t have an account? <Link to="/signup">Register</Link></div>
             </div>
             </div>
         </div >

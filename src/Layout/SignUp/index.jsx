@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 import Picture from "../../components/Picture";
 import OrLine from "../../components/OrLine";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 class SignUp extends Component {
     constructor(props) {
@@ -38,13 +39,12 @@ class SignUp extends Component {
                 <Quote color="#FFF" fontStyle="normal" />
             </div >
             <div className="right__side">
-                <a href="
-                " className="back">
+                <Link to="/" className="back">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.8625 3.225L13.3791 1.75L5.13745 10L13.3875 18.25L14.8625 16.775L8.08745 10L14.8625 3.225Z" fill="#8692A6" />
                     </svg>
                     Back
-                </a>
+                </Link>
                 <div className="registration__area">
                     <h1>Register Individual Account!</h1>
                     <p> For the purpose of gamers regulation, your details are required. </p>
@@ -63,7 +63,9 @@ class SignUp extends Component {
                     </form>
                     <Button type="submit" componentClassName="register__btn" bgcolor="#1565D8" color="#fff" > Register Account </Button>
                     <OrLine />
-                    <Button componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)">Login</Button>
+                    <Button componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)">
+                        <Link to="/">Login</Link>
+                    </Button>
                 </div>
             </div>
         </div >
