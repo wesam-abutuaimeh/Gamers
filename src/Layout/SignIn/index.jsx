@@ -5,8 +5,8 @@ import Picture from "../../components/Picture";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import OrLine from "../../components/OrLine";
-import "./style.css";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 class SignIn extends Component {
 

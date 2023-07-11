@@ -4,7 +4,7 @@ import "./style.css";
 class InputField extends Component {
 
     render() {
-        const { id, title, type, value, placeholder, required, className, onChange } = this.props;
+        const { id, title, type, value, placeholder, required, className, handlePassword } = this.props;
         return (
             <div className="input__container">
                 <label htmlFor={id}> {title}</label>
@@ -13,7 +13,7 @@ class InputField extends Component {
                     value={value}
                     required={required}
                     placeholder={placeholder}
-                    onChange={onChange}
+                    onBlur={handlePassword}
                     className={className} />
             </div>
         );

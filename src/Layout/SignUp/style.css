@@ -36,9 +36,9 @@
   overflow: auto;
 }
 .registration__area {
-  margin-top: 193px;
   display: flex;
   flex-direction: column;
+  margin-top: 89px;
 }
 .sign__up__container .right__side h1 {
   color: #000;
@@ -88,9 +88,8 @@ form {
   font-family: Inter;
   font-size: 16px;
   font-weight: 600;
-  position: absolute;
-  top: 79px;
-  left: 719px;
+  margin-top: 79px;
+  margin-left: 77px;
 }
 .back svg {
   margin-right: 10px;
@@ -130,4 +129,42 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:checked + .agreement__label::after {
   visibility: visible;
+}
+
+.password .process {
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #c4c4c4;
+  position: relative;
+}
+.password .process__bar {
+  position: absolute;
+  content: "";
+  height: 4px;
+}
+.password .text {
+  color: #ffc107;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+@media (max-width: 991px) {
+  .sign__up__container .left__side {
+    display: none;
+  }
+  .sign__up__container .right__side {
+    width: 100%;
+  }
+  .sign__up__container .right__side p {
+    text-align: center;
+  }
+  .registration__area {
+    margin: 0;
+    padding: 5px;
+  }
+  .back {
+    display: none;
+  }
 }

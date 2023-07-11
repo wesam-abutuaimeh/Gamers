@@ -5,8 +5,8 @@ import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import Picture from "../../components/Picture";
 import OrLine from "../../components/OrLine";
-import "./style.css";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 class SignUp extends Component {
     constructor(props) {
@@ -19,9 +19,26 @@ class SignUp extends Component {
     handleChangePassword = (e) => {
         const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[\]:;<>,.?/~_+\-=|]).{8,32}$/;
         const password = e.target.value;
-        this.setState({ passwordVal: password }, () => {
-            const isValidPassword = regex.test(password);
-            console.log(isValidPassword ? 'Valid password' : 'Invalid password'); // TODO handle stringth of password bar
+        this.setState((prevState) => {
+            return { passwordVal: prevState };
+        }, () => {
+            const isStrongPassword = regex.test(password);
+            const warningMsg = document.querySelector(".text"),
+                processBar = document.querySelector(".process__bar");
+
+            if (isStrongPassword) {
+                warningMsg.innerHTML = "StrongPassword";
+                processBar.style.cssText = "width: 100%;background-color: #1565D8;";
+                warningMsg.style.cssText = "color: #1565D8;";
+            } else if (password.length === 0) {
+                warningMsg.innerHTML = "Please Write password";
+                processBar.style.cssText = "width: 10%; background-color: #ffc107;";
+                warningMsg.style.cssText = "color: #ffc107;";
+            } else if (password.length < 8) {
+                warningMsg.innerHTML = "I,m sorry but it's bad password ";
+                processBar.style.cssText = "width: 30%; background-color: #ffc107;";
+                warningMsg.style.cssText = "color: #ffc107;";
+            }
         });
     }
 
@@ -53,8 +70,16 @@ class SignUp extends Component {
                             onChange={this.handleInputChange} />
                         <InputField htmlFor="email" title="Email Address*" type="email" placeholder="Enter email address" required={true} id="email" className="email" />
                         <InputField htmlFor="phone__number" title="Phone Number*" type="number" placeholder="Enter phone number" required={true} id="phone__number" className="phone__number" />
-                        <InputField htmlFor="create__password" title="Create Password*" type="password" placeholder="password" required={true} id="create__password"
-                            className="create__password" onChange={this.handleChangePassword} />
+                        <div className="password">
+                            <InputField htmlFor="create__password" title="Create Password*" type="password" placeholder="password" required={true} id="create__password"
+                                className="create__password" handlePassword={this.handleChangePassword} />
+                            <div>
+                                <div className="process">
+                                    <div className="process__bar"></div>
+                                </div>
+                                <div className="text">You Must Write Strong Password For Security, PLZ!</div>
+                            </div>
+                        </div>
                         <InputField htmlFor="repeat__password" title="Repeat password*" type="password" placeholder="Repeat password" required={true} id="repeat__password" className="repeat__password" />
                         <div>
                             <input type="checkbox" id="agreement" className="agreement" required />

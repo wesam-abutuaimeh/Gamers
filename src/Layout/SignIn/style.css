@@ -101,3 +101,21 @@ form .login__btn {
   text-decoration: none;
   color: #1565d8;
 }
+@media (max-width: 991px) {
+  .sign__in__container {
+    height: 100vh;
+  }
+  .sign__in__container .left__side {
+    display: none;
+  }
+  .sign__in__container .right__side {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .registration__area {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
