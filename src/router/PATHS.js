@@ -1,6 +1,15 @@
 export const PATHS = {
   Auth: {
-    SIGNIN: "/",
+    SIGNIN: "/login",
     SIGNUP: "/signup",
+  },
+  Home: "/home",
+  PROFILE: "account",
+  ADMIN: {
+    ROOT: "/settings",
+    USERS: "admin/users",
+  },
+  NOT_FOUND: {
+    "*": "*",
   },
 };
