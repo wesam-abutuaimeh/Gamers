@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: end;
+  margin: 5px 20px auto auto;
+  align-items: center;
+}
+.avatar {
+  width: 70px;
+  height: 70px;
+}
+.user__info {
+  margin-right: 22px;
+  color: white;
+}
+main {
+  width: 100%;
+}

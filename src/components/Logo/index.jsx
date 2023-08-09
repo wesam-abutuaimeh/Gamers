@@ -1,10 +1,4 @@
-import { Component } from "react";
+import React from 'react'
 import "./style.css"
-
-class Logo extends Component {
-    render() {
-        return (<div className="logo">{this.props.children} <span>Gamers</span> </div>);
-    }
-}
-
+const Logo = ({ children }) => (<div className="logo">{children} <span>Gamers</span> </div>)
 export default Logo;

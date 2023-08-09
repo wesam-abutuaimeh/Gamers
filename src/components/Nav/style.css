@@ -1,0 +1,40 @@
+aside {
+  min-width: 100px;
+  background-color: #222222;
+}
+aside nav {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+aside nav .page__icons {
+  display: flex;
+  flex-direction: column;
+}
+.mode__setting {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 17px 9px;
+  align-items: flex-end;
+  border-radius: 60px;
+  background: #515151;
+}
+.mode__setting div {
+  cursor: pointer;
+}
+.homepage__logo {
+  width: 40px;
+}
+.page__icons {
+  height: 200px;
+  justify-content: space-between;
+}
+.page__icons img {
+  width: 30px;
+}
+.mode__setting img {
+  width: 25px;
+}

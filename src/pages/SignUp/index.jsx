@@ -11,7 +11,6 @@ import { PATHS } from "../../router/PATHS";
 import { registrationSchema } from "../../constant/authFormsValidation";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import "./style.css";
 
 function SignUp(props) {
