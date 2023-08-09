@@ -1,0 +1,8 @@
+.error__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #222;
+  color: #d8d8d8;
+}
