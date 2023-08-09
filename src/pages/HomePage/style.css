@@ -1,0 +1,14 @@
+.homepage {
+  display: flex;
+  min-height: 100vh;
+  background: #222;
+}
+.statistics__container {
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section__head {
+  margin-bottom: 10px;
+}
