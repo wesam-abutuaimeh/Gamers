@@ -1,5 +1,5 @@
 import { boolean, object, string } from "yup";
-import REGEX from "./regex";
+import { REGEX } from "./regex";
 
 export const signinSchema = object().shape({
   email: string().matches(REGEX.EMAIL, "Whoops! Invaild Email").required(),
