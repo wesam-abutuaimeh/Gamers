@@ -1,6 +1,6 @@
 .sign__in__container {
   display: flex;
-  height: 1024px;
+  height: 100vh;
 }
 .sign__in__container .left__side {
   width: 642px;
@@ -100,6 +100,10 @@ form .login__btn {
 .exist__account a {
   text-decoration: none;
   color: #1565d8;
+}
+.error__msg {
+  color: red;
+  text-decoration: underline wavy 1px red;
 }
 @media (max-width: 991px) {
   .sign__in__container {
