@@ -1,0 +1,27 @@
+.last__played {
+  display: flex;
+  align-items: center;
+  background: #515151;
+  width: 300px;
+  height: 50px;
+  margin: 5px 0;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.last__played img {
+  width: 55px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+}
+.last__played__container span {
+  color: #d8d8d8;
+  font-family: Gilroy;
+  font-size: 17px;
+  font-weight: 200;
+  max-width: 210px;
+}

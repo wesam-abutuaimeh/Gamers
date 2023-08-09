@@ -1,0 +1,40 @@
+.card {
+  width: 400px;
+  height: auto;
+  background-color: red;
+  border-radius: 40px;
+  position: relative;
+  display: flex;
+}
+.card__bg {
+  width: 100%;
+  object-fit: contain;
+}
+.card .hoverd__img {
+  width: 200px;
+  position: absolute;
+  bottom: 0;
+}
+.card:hover .hoverd__img {
+  animation: bounce 0.5s linear both;
+  -webkit-animation: bounce 0.5s linear both;
+}
+.card__description {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  max-width: 317px;
+  color: #d8d8d8;
+  text-align: right;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 10;
+}
+@keyframes bounce {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.4) translateY(-27px);
+  }
+}

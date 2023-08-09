@@ -1,0 +1,21 @@
+section {
+  display: grid;
+  grid-template-columns: 20px [center-start] 1fr [center-end] 70px;
+  & > * {
+    grid-column: center;
+  }
+}
+.cards__container {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 30px;
+  overflow-x: scroll;
+  padding-bottom: 20px;
+}
+.cards__container::-webkit-scrollbar {
+  background-color: #d8d8d8;
+  height: 10px;
+}
+.cards__container::-webkit-scrollbar-thumb {
+  background-color: #777;
+}
