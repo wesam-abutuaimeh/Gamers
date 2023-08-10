@@ -11,16 +11,6 @@ import GuestGuard from "../components/Guards/GuestGuard";
 import AdminGuard from "../components/Guards/AdminGuard";
 
 const adminPages = [
-    // {
-    //     path: PATHS.ADMIN.ROOT,
-    //     element: Settings,
-    //     children: [
-    //         {
-    //             path: PATHS.ADMIN.USERS,
-    //             element: <h1>Users</h1>,
-    //         },
-    //     ],
-    // },
     {
         path: "/",
         element: <AdminGuard />,
