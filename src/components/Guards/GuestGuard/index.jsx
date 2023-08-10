@@ -11,6 +11,7 @@ const GuestGuard = () => {
   if (role === ROLES.ADMIN)
     return <Navigate to={PATHS.ADMIN.ROOT} replace={true} />;
   return <Outlet />;
+
 };
 
 export default GuestGuard;

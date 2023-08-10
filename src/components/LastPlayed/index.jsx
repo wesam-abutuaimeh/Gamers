@@ -9,7 +9,7 @@ const LastPlayed = ({ color }) => {
             <SectionHead>Last Played</SectionHead>
             <div className='last__played__container'>
                 {LAST_PLAYED.map((item) => {
-                    return <div className='last__played'>
+                    return <div className='last__played' key={item.id}>
                         <img src={item.avatar} alt={item.content} />
                         <span>{item.content}</span>
                     </div>

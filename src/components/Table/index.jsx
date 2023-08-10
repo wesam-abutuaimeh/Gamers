@@ -25,4 +25,4 @@ const Table = ({ columns, data }) => {
     </table>
 }
 
-export default Table;
+export default Table; 

@@ -15,3 +15,31 @@ body {
   font-size: 16px;
   position: relative;
 }
+.DARK {
+  background-color: #222;
+  color: white;
+}
+.LIGHT {
+  background-color: white;
+  color: #000;
+}
+
+:root {
+  --first-color: white;
+  --seconde-color: #222;
+  --third-color: #515151;
+  --forth-color: rgba(255, 255, 255, 0.57);
+  --five-color: #696f79;
+  --Button-color: #1565d8;
+  --background-color: linear-gradient(134deg, #222 0%, #222 100%);
+}
+
+[data-theme="light"] {
+  --first-color: #222;
+  --seconde-color: white;
+  --third-color: white;
+  --forth-color: rgba(0, 0, 0, 0.25);
+  --five-color: white;
+  --Button-color: white;
+  --background-color: white;
+}

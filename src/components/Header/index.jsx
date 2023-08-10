@@ -4,7 +4,7 @@ import "./style.css"
 const Header = () => {
     return (
         <header className='header'>
-            <div className='user__info'>
+            <div className="user__info">
                 <p>Welcome back,</p>
                 <span>Jenny!</span>
             </div>

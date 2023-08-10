@@ -20,7 +20,6 @@ export default function AdminPage() {
                 setUsers(response.data.users);
                 setIsLoading(false); // Set loading state to false after data is fetched
             } catch (error) {
-                console.log(error);
                 setIsLoading(false); // Set loading state to false if an error occurs
             }
         };
@@ -47,7 +46,7 @@ export default function AdminPage() {
                 });
                 setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
             } catch (error) {
-                console.log(error);
+                throw new Error(error);
             } finally {
                 setDeletingUser(null); // Reset the user being deleted
             }

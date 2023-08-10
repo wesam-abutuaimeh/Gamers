@@ -1,6 +1,6 @@
 aside {
   min-width: 100px;
-  background-color: #222222;
+  /* background-color: #222222; */
 }
 aside nav {
   min-height: 100vh;
@@ -20,7 +20,12 @@ aside nav .page__icons {
   padding: 17px 9px;
   align-items: flex-end;
   border-radius: 60px;
-  background: #515151;
+}
+.DARK .mode__setting {
+  background-color: #515151;
+}
+.LIGHT .mode__setting {
+  background-color: #c1c1c1;
 }
 .mode__setting div {
   cursor: pointer;
@@ -37,4 +42,8 @@ aside nav .page__icons {
 }
 .mode__setting img {
   width: 25px;
+}
+.logout__btn {
+  cursor: pointer;
+  fill: red;
 }

@@ -1,7 +1,8 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 import { ROLES } from "../constant/roles";
 import { AUTH_API_URL } from "../config/api";
+import { PATHS } from "../router/PATHS";
 import { AUTH_ACTIONS, END_POINTS } from "../constant/auth";
 
 const INIT_STATE = {
@@ -25,23 +26,31 @@ const authReducer = (state, action) => {
                 isLoading: false,
             };
         case AUTH_ACTIONS.AUTHENTICATE:
-            localStorage.setItem("user", JSON.stringify(action.payload));
-            localStorage.setItem("role", JSON.stringify(checkRole()));
-            localStorage.setItem("token", action.payload.token || state.token);
+            const token = action.payload.token || state.token || localStorage.getItem("token")
+            const role = checkRole();
+            localStorage.setItem("role", role);
+            localStorage.setItem("token", token);
             return {
                 ...state,
                 isAuth: true,
                 user: action.payload.user,
-                token: action.payload.token || state.token,
-                role: checkRole(),
+                token: token,
+                role: role,
                 isLoading: false,
             };
         case AUTH_ACTIONS.LOGOUT:
-            ["role", "token", "user"].map((item) => {
+            ["token", "user"].forEach((item) => {
                 localStorage.removeItem(item);
-                return null;
             });
-            return INIT_STATE;
+            localStorage.setItem("role", ROLES.GUEST)
+            return {
+                user: null,
+                isAuth: false,
+                token: null,
+                role: ROLES.GUEST,
+                error: null,
+                isLoading: false,
+            };
         default:
             return state;
     }
@@ -49,10 +58,9 @@ const authReducer = (state, action) => {
 
 const useAuth = () => {
     const [state, dispatch] = useReducer(authReducer, INIT_STATE);
-    const token = state.token || localStorage.getItem("token");
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${state.token}`,
         },
     };
 
@@ -69,14 +77,18 @@ const useAuth = () => {
             dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
         }
     };
-    const logout = async (body) => {
+    const logout = async () => {
         try {
             dispatch({ type: AUTH_ACTIONS.LOGOUT });
-        } catch (error) {
+        }
+        catch (error) {
             dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
         }
     };
+
     const getProfileData = async () => {
+        const token = localStorage.getItem('token')
+        if (!token) return
         try {
             dispatch({ type: AUTH_ACTIONS.SET_LOADING });
             const { data } = await axios.get(
@@ -91,6 +103,10 @@ const useAuth = () => {
             dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
         }
     };
+
+    useEffect(() => {
+        getProfileData()
+    }, [])
 
     return { ...state, handleAUTHENTICATE, logout, getProfileData };
 };
