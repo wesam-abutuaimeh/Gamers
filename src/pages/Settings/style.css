@@ -1,3 +1,38 @@
-.bod {
-  background-color: #222;
+.adminPage {
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+.welcomeMessage {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.userTable th,
+.userTable td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.userTable th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+.userTable tbody tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+.deleteButton {
+  padding: 6px 12px;
+  background-color: #ff4646;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.deleteButton:hover {
+  background-color: #e40000;
 }

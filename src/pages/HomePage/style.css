@@ -1,7 +1,6 @@
 .homepage {
   display: flex;
   min-height: 100vh;
-  background: #222;
 }
 .statistics__container {
   padding: 5px 20px;
@@ -11,4 +10,6 @@
 }
 .section__head {
   margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 800;
 }

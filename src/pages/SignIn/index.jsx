@@ -23,7 +23,7 @@ function SignIn() {
     });
 
     const onSubmit = async (data) => {
-        handleAUTHENTICATE(END_POINTS.LOGIN, data);
+        handleAUTHENTICATE(END_POINTS.LOGIN, data)
     };
 
     return (
