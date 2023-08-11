@@ -18,6 +18,10 @@ const adminPages = [
             path: PATHS.ADMIN.ROOT,
             element: <Settings />,
             index: true,
+        },
+        {
+            path: PATHS.PROFILE,
+            element: <Profile />,
         }]
     }
 ];
@@ -51,7 +55,7 @@ const userPages = [
             {
                 path: PATHS.PROFILE,
                 element: <Profile />,
-            }
+            },
         ],
     },
 ];
