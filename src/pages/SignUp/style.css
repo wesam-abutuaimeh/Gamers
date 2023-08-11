@@ -80,6 +80,10 @@ form {
   margin-top: 32px;
   margin-bottom: 68px;
 }
+.DARK .login__btn {
+  background-color: #d10;
+  color: white;
+}
 .back {
   display: flex;
   align-items: center;
@@ -112,8 +116,13 @@ input:not([type="checkbox"]) {
   height: 64px;
   border: 1px solid #8692a6;
   border-radius: 6px;
+  margin: 10px 0;
   padding: 23px 0 24px 30px;
   outline: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
 label {
   color: #696f79;
@@ -121,10 +130,10 @@ label {
   margin-bottom: 14px;
   margin: 10px 0;
 }
-
 .agreement__label {
   position: relative;
   padding: 0 35px;
+  margin-top: 5px;
 }
 .agreement__label::before,
 .agreement__label::after {

@@ -1,6 +1,5 @@
 .sign__in__container {
   display: flex;
-  height: 100vh;
 }
 .sign__in__container .left__side {
   width: 642px;
@@ -106,9 +105,6 @@ form .login__btn {
   text-decoration: underline wavy 1px red;
 }
 @media (max-width: 991px) {
-  .sign__in__container {
-    height: 100vh;
-  }
   .sign__in__container .left__side {
     display: none;
   }

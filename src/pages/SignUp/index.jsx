@@ -157,9 +157,10 @@ function SignUp(props) {
                         </Button>
                     </form>
                     <OrLine />
-                    <Button componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)" >
+
+                    <button className="login__btn">
                         <Link to={PATHS.Auth.SIGNIN}>Login</Link>
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>
@@ -167,3 +168,4 @@ function SignUp(props) {
 }
 
 export default SignUp;
+/*componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)"*/
