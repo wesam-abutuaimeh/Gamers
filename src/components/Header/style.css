@@ -14,3 +14,12 @@
 main {
   width: 100%;
 }
+.header a {
+  display: block;
+}
+.DARK a {
+  color: white;
+}
+.LIGHT a {
+  color: #000;
+}
