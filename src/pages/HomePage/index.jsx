@@ -1,7 +1,6 @@
 import React from 'react'
 import Nav from '../../components/Nav';
 import Header from '../../components/Header';
-// import { useThemeContext } from '../../contexts/ThemeContext'
 import LastPlayed from '../../components/LastPlayed';
 import RecentTrophy from '../../components/RecentTrophy';
 import PurpleFriendChat from '../../components/FriendPurple';
@@ -9,7 +8,6 @@ import Slider from '../../components/Silder';
 import "./style.css"
 
 const HomePage = () => {
-    // const { themeMode, toggleMode } = useThemeContext();
     return (
         <div className='homepage'>
             <Nav />
