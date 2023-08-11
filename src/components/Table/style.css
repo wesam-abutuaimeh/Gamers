@@ -1,22 +1,14 @@
 table {
   width: 100%;
+  text-align: center;
   border-collapse: collapse;
 }
-table,
 th,
 td {
-  border: 1px solid #ddd;
+  border: 2px solid #d10;
   padding: 8px;
-  text-align: center;
-  cursor: pointer;
 }
 th {
-  background-color: #4caf50;
-  color: white;
-}
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-tr:hover {
-  background-color: #ddd;
+  font-weight: 900;
+  font-size: 20px;
 }
