@@ -1,38 +1,23 @@
-.adminPage {
+.welcom__msg,
+.back__button {
+  padding: 20px 0;
+}
+.welcom__msg {
   text-align: center;
-  margin: auto;
-  padding: 20px;
 }
-.welcomeMessage {
-  font-size: 24px;
-  margin-bottom: 20px;
+.back__button {
+  text-align: center;
+  display: block;
+  font-size: 20px;
 }
-.userTable {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+.DARK .back__button {
+  color: #d9d9d9;
 }
-.userTable th,
-.userTable td {
-  padding: 10px;
-  border: 1px solid #ccc;
+.LIGHT .back__button {
+  color: #000;
 }
-.userTable th {
-  background-color: #f0f0f0;
-  font-weight: bold;
-}
-.userTable tbody tr:nth-child(even) {
-  background-color: #f0f0f0;
-}
-.deleteButton {
-  padding: 6px 12px;
-  background-color: #ff4646;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.deleteButton:hover {
-  background-color: #e40000;
+.info {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }

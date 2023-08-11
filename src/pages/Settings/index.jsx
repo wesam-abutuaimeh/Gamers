@@ -1,98 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { ROLES } from '../../constant/roles';
-import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useAPI from '../../hooks/useAPI';
+import { API_URL } from "../../config/api"
+import { PATHS } from '../../router/PATHS';
+import Table from "../../components/Table";
+import USERS_COLUMNS from "../../constant/usersColumns";
 import "./style.css";
 
-export default function AdminPage() {
+export default function Setting() {
+    const { data, get, isLoading, deleteItem } = useAPI(API_URL);
     const adminToken = localStorage.getItem("token");
-    const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // New state for loading
-    const [deletingUser, setDeletingUser] = useState(null); // New state for the user being deleted
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("https://react-tt-api.onrender.com/api/users", {
-                    headers: { Authorization: `Bearer ${adminToken}` }
-                });
-                setUsers(response.data.users);
-                setIsLoading(false); // Set loading state to false after data is fetched
-            } catch (error) {
-                setIsLoading(false); // Set loading state to false if an error occurs
-            }
-        };
-
-        fetchData();
-    }, [adminToken]);
-
-    useEffect(() => {
-        const role = localStorage.getItem('role');
-        if (role === ROLES.GUEST || !role) {
-            navigate('/login');
-        } else if (role === ROLES.USER) {
-            navigate('/home');
+    const config = {
+        headers: {
+            Authorization: `Bearer ${adminToken}`
         }
-    }, [navigate]);
+    }
+    useEffect(() => {
+        get(config);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const deleteUser = async (userId) => {
-        const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-        if (confirmDelete) {
-            setDeletingUser(userId); // Set the user being deleted
-            try {
-                await axios.delete(`https://react-tt-api.onrender.com/api/users/${userId}`, {
-                    headers: { Authorization: `Bearer ${adminToken}` }
-                });
-                setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
-            } catch (error) {
-                throw new Error(error);
-            } finally {
-                setDeletingUser(null); // Reset the user being deleted
-            }
-        }
+    const handleDelete = (id) => {
+        deleteItem(id, config);
     };
 
     return (
-        <div className="adminPage">
-            <h1 className="welcomeMessage">Welcome to the Admin Page</h1>
-
-            {isLoading ? (<h1 className="loader">Loading...</h1>) : (
-                <table className="userTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => (
-                            <React.Fragment key={user._id}>
-                                <tr>
-                                    <td>{user._id}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.createdAt}</td>
-                                    <td>{user.updatedAt}</td>
-                                    <td>
-                                        {deletingUser === user._id ? (
-                                            <div className="loader">Deleting...</div>
-                                        ) : (
-                                            <button className='deleteButton' onClick={() => deleteUser(user._id)}>Delete</button>
-                                        )}
-                                    </td>
-                                </tr>
-                            </React.Fragment>
-                        ))}
-                    </tbody>
-                </table>
+        <>
+            <h1 className="welcom__msg">Welcome To Admin Page</h1>
+            <div className="info">
+                <p>Total users: {data.total}</p>
+                <p>Total Pages: {data.pages}</p>
+            </div>
+            {isLoading ? (
+                <h1 className="loader">Loading...</h1>
+            ) : (
+                <>
+                    <Table columns={USERS_COLUMNS(data, handleDelete)} data={data.users || []} />
+                    {data.error && <span className="error__message">{data.error}</span>}
+                </>
             )}
-
-            <Link to="/home" className="backButton">Back to Home</Link>
-        </div>
+            <Link to={PATHS.Home} className="back__button">Back to Home</Link>
+        </>
     );
 }
