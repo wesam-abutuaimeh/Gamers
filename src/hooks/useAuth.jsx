@@ -1,8 +1,7 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import { ROLES } from "../constant/roles";
-import { AUTH_API_URL } from "../config/api";
-import { PATHS } from "../router/PATHS";
+import { API_URL } from "../config/api";
 import { AUTH_ACTIONS, END_POINTS } from "../constant/auth";
 
 const INIT_STATE = {
@@ -67,7 +66,7 @@ const useAuth = () => {
     const handleAUTHENTICATE = async (endPoint, body) => {
         try {
             dispatch({ type: AUTH_ACTIONS.SET_LOADING });
-            const { data } = await axios.post(AUTH_API_URL + endPoint, body);
+            const { data } = await axios.post(API_URL + endPoint, body);
             dispatch({
                 type: AUTH_ACTIONS.AUTHENTICATE,
                 payload: data?.data || data,
@@ -92,7 +91,7 @@ const useAuth = () => {
         try {
             dispatch({ type: AUTH_ACTIONS.SET_LOADING });
             const { data } = await axios.get(
-                AUTH_API_URL + END_POINTS.PROFILE,
+                API_URL + END_POINTS.PROFILE,
                 config
             );
             dispatch({
@@ -106,6 +105,7 @@ const useAuth = () => {
 
     useEffect(() => {
         getProfileData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return { ...state, handleAUTHENTICATE, logout, getProfileData };
