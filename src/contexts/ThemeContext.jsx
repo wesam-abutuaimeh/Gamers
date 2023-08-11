@@ -5,7 +5,7 @@ const ThemeContext = createContext(null);
 export const useThemeContext = () => useContext(ThemeContext);
 
 export const ThemeContextProvider = ({ children }) => {
-    const [themeMode, setThemeMode] = useState(() => localStorage.getItem("themeMode") || THEMES.DARK);
+    const [themeMode, setThemeMode] = useState(() => localStorage.getItem("themeMode") || THEMES.LIGHT);
     const toggleMode = () => setThemeMode((prevState) => prevState === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)
     useEffect(() => {
         localStorage.setItem("themeMode", themeMode);
