@@ -2,7 +2,6 @@ export const END_POINTS = {
   LOGIN: "/login",
   SIGNUP: "/signup",
   PROFILE: "/profile",
-  SETTINGS: "",
 };
 
 export const AUTH_ACTIONS = {
