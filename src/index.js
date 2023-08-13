@@ -1,20 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { BrowserRouter } from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
+import ErrorBoundary from "./components/ErrorBoundary";
+import App from "./App";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthContext>
-        <ThemeContextProvider>
-          <App />
-        </ThemeContextProvider>
-      </AuthContext>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AuthContext>
+          <ThemeContextProvider>
+            <App />
+          </ThemeContextProvider>
+        </AuthContext>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );
