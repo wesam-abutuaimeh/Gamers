@@ -1,38 +1,41 @@
-import React from "react";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import HomePage from "../pages/HomePage";
-import Profile from "../pages/Profile";
-import Settings from "../pages/Settings";
-import ErrorPage from "../pages/ErrorPage";
+import React, { lazy } from "react";
 import { PATHS } from "./PATHS";
 import UserGuard from "../components/Guards/UserGuard";
 import GuestGuard from "../components/Guards/GuestGuard";
 import AdminGuard from "../components/Guards/AdminGuard";
+const SignIn = lazy(() => import("../pages/SignIn"))
+const SignUp = lazy(() => import("../pages/SignUp"));
+const HomePage = lazy(() => import("../pages/HomePage"));
+const Profile = lazy(() => import("../pages/Profile"));
+const Settings = lazy(() => import("../pages/Settings"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 const adminPages = [
     {
         path: "/",
         element: <AdminGuard />,
         children: [{
-            path: PATHS.ADMIN.ROOT,
-            element: <Settings />,
+            path: PATHS.ADMIN,
+            element: <HomePage />,
             index: true,
         },
         {
+            path: PATHS.Home,
+            element: <HomePage />,
+        },
+        {
             path: PATHS.PROFILE,
-            element: <Profile />,
-        }]
+            element: <Settings />,
+        },
+        ]
     }
 ];
 
 const guestPages = [
-
     {
         path: "/",
         element: <GuestGuard />,
         children: [{
-
             element: <SignUp />,
             index: true,
         },
