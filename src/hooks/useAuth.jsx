@@ -4,11 +4,14 @@ import { ROLES } from "../constant/roles";
 import { API_URL } from "../config/api";
 import { AUTH_ACTIONS, END_POINTS } from "../constant/auth";
 
+const getToken = () => { return localStorage.getItem("token") || null }
+const getRole = () => { return localStorage.getItem("role") || ROLES.GUEST }
+
 const INIT_STATE = {
     user: null,
     isAuth: false,
-    token: null,
-    role: ROLES.GUEST,
+    token: getToken(),
+    role: getRole(),
     error: null,
     isLoading: false,
 };
@@ -38,10 +41,9 @@ const authReducer = (state, action) => {
                 isLoading: false,
             };
         case AUTH_ACTIONS.LOGOUT:
-            ["token", "user"].forEach((item) => {
+            ["role", "token"].forEach((item) => {
                 localStorage.removeItem(item);
             });
-            localStorage.setItem("role", ROLES.GUEST)
             return {
                 user: null,
                 isAuth: false,
@@ -59,7 +61,7 @@ const useAuth = () => {
     const [state, dispatch] = useReducer(authReducer, INIT_STATE);
     const config = {
         headers: {
-            Authorization: `Bearer ${state.token}`,
+            Authorization: `Bearer ${localStorage.getItem("token") || state.token}`,
         },
     };
 
@@ -90,10 +92,7 @@ const useAuth = () => {
         if (!token) return
         try {
             dispatch({ type: AUTH_ACTIONS.SET_LOADING });
-            const { data } = await axios.get(
-                API_URL + END_POINTS.PROFILE,
-                config
-            );
+            const { data } = await axios.get(API_URL + END_POINTS.PROFILE, config);
             dispatch({
                 type: AUTH_ACTIONS.AUTHENTICATE,
                 payload: data?.data || data,
