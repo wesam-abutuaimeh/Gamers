@@ -1,45 +1,48 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, Suspense, lazy } from 'react';
 import useAPI from '../../hooks/useAPI';
 import { API_URL } from "../../config/api"
-import { PATHS } from '../../router/PATHS';
-import Table from "../../components/Table";
-import USERS_COLUMNS from "../../constant/usersColumns";
+import USERS_COLUMNS from "../../constants/usersColumns";
+import Nav from "../../components/Nav";
 import "./style.css";
+const Table = lazy(() => import("../../components/Table"));
 
 export default function Setting() {
     const { data, get, isLoading, deleteItem } = useAPI(API_URL);
     const adminToken = localStorage.getItem("token");
+
     const config = {
         headers: {
             Authorization: `Bearer ${adminToken}`
         }
     }
-    useEffect(() => {
-        get(config);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const handleDelete = (id) => {
         deleteItem(id, config);
     };
 
+    useEffect(() => {
+        get(config);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
-        <>
-            <h1 className="welcom__msg">Welcome To Admin Page</h1>
-            <div className="info">
-                <p>Total users: {data.total}</p>
-                <p>Total Pages: {data.pages}</p>
-            </div>
+        <div className='settings__container' >
+            <Nav />
             {isLoading ? (
                 <h1 className="loader">Loading...</h1>
             ) : (
-                <>
-                    <Table columns={USERS_COLUMNS(data, handleDelete)} data={data.users || []} />
+                <div className='data'>
+                    <h1 className="welcom__msg">Welcome To Admin Page</h1>
+                    <div className="info">
+                        <p>Total users: {data?.total}</p>
+                        <p>Total Pages: {data?.pages}</p>
+                    </div>
+                    <Suspense fallback={"Loading Table Data ..."}>
+                        <Table columns={USERS_COLUMNS(data, handleDelete)} data={data.users || []} />
+                    </Suspense>
                     {data.error && <span className="error__message">{data.error}</span>}
-                </>
+                </div>
             )}
-            <Link to={PATHS.Home} className="back__button">Back to Home</Link>
-        </>
+        </div>
     );
 }

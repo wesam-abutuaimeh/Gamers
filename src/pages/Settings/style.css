@@ -5,19 +5,16 @@
 .welcom__msg {
   text-align: center;
 }
-.back__button {
-  text-align: center;
-  display: block;
-  font-size: 20px;
-}
-.DARK .back__button {
-  color: #d9d9d9;
-}
-.LIGHT .back__button {
-  color: #000;
-}
 .info {
   margin-left: 20px;
   margin-bottom: 10px;
   font-size: 18px;
+}
+.settings__container {
+  display: flex;
+  min-height: 100vh;
+}
+.settings__container .data {
+  flex-direction: column;
+  width: 100vw;
 }
