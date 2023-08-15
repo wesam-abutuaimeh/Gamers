@@ -5,15 +5,18 @@ import Quote from "../../components/Quotes";
 import Picture from "../../components/Picture";
 import Button from "../../components/Button";
 import OrLine from "../../components/OrLine";
+import Alert from "../../components/Alert"
 import { useAuthContext } from "../../contexts/AuthContext";
-import { END_POINTS } from "../../constant/auth";
-import { signinSchema } from "../../constant/authFormsValidation";
+import { END_POINTS } from "../../constants/auth";
+import { signinSchema } from "../../constants/authFormsValidation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { INPUTS } from "../../constants/loginInputs";
+import { socailMediaLinks } from "../../constants/socailMediaLinks";
 import "./style.css";
 
 function SignIn() {
-    const { handleAUTHENTICATE, isLoading } = useAuthContext();
+    const { handleAUTHENTICATE, isLoading, showAuthAlert } = useAuthContext();
     const {
         register,
         handleSubmit,
@@ -23,11 +26,12 @@ function SignIn() {
     });
 
     const onSubmit = async (data) => {
-        handleAUTHENTICATE(END_POINTS.LOGIN, data)
+        await handleAUTHENTICATE(END_POINTS.LOGIN, data)
     };
 
     return (
         <div className="sign__in__container">
+            {showAuthAlert && <Alert alert="Error !" alertBody="Sorry, there seems to be an issue with the information you provided. Please double-check your username and password and ensure that they are entered correctly" />}
             <div className="left__side">
                 <Logo><Picture src="/assets/sign__in__logo.svg" alt="signin logo" /></Logo>
                 <Quote color="#696F79" fontStyle="italic" signatureColor="#696F79" />
@@ -38,30 +42,24 @@ function SignIn() {
                     <h1>Join the game!!</h1>
                     <p>Go inside the best gamers social network!</p>
                     <div className="social__media__links__container">
-                        <a className="social__media__link" href="https://google.com" target="_blank" rel="noopener noreferrer" >
-                            <Picture src="/assets/flat-color-icons_google.png" alt="Google" />
-                        </a>
-                        <a className="social__media__link" href="https://twitter.com" target="_blank" rel="noopener noreferrer" >
-                            <Picture src="/assets/logos_twitter.png" alt="Twitter" />
-                        </a>
-                        <a className="social__media__link" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" >
-                            <Picture src="/assets/cib_linkedin-in.png" alt="LinkedIn" />
-                        </a>
-                        <a className="social__media__link" href="https://github.com" target="_blank" rel="noopener noreferrer" >
-                            <Picture src="/assets/ant-design_github-filled.png" alt="Github" />
-                        </a>
+                        {socailMediaLinks.map((link) => {
+                            return <a key={link.id} className={link.class} href={link.href} target={link.target} rel={link.rel} >
+                                <Picture src={link.src} alt={link.title} />
+                            </a>
+                        })}
                     </div>
                     <OrLine />
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <label htmlFor="email">Your email</label>
-                        <input type="email" placeholder="Write your email" id="email" className="email" {...register("email")} />
-                        {errors.email && <span className="error__msg">{errors.email.message}</span>}
-
-                        <label htmlFor="password">Enter your password*</label>
-                        <input type="password" placeholder="•••••••••" id="create__password" className="create__password" {...register("password")} />
-                        {errors.password && <span className="error__msg">{errors.password.message} </span>}
-
-                        <Button type="submit" componentClassName="login__btn" bgcolor="#1565D8" color="#fff" >
+                        {INPUTS.map((input) => {
+                            return (
+                                <div key={input.id} className="input__container">
+                                    <label htmlFor={input.id}>{input.label}</label>
+                                    <input type={input.type} placeholder={input.placeholder} id={input.id} className={input.class} {...register(input.type)} />
+                                    {errors[input["type"]] && <span className="error__msg">{errors[input["type"]].message}</span>}
+                                </div>
+                            );
+                        })}
+                        <Button type="submit" class="login__btn" bgcolor="#1565D8" color="#fff">
                             {isLoading ? "isLoading..." : "Login"}
                         </Button>
                     </form>
@@ -73,5 +71,4 @@ function SignIn() {
         </div>
     );
 }
-
 export default SignIn;

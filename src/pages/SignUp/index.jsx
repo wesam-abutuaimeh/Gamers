@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../components/Logo";
 import Quote from "../../components/Quotes";
@@ -6,40 +6,16 @@ import Button from "../../components/Button";
 import Picture from "../../components/Picture";
 import OrLine from "../../components/OrLine";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { END_POINTS } from "../../constant/auth";
+import { END_POINTS } from "../../constants/auth";
 import { PATHS } from "../../router/PATHS";
-import { registrationSchema } from "../../constant/authFormsValidation";
+import { registrationSchema } from "../../constants/authFormsValidation";
+import { INPUTS } from "../../constants/signupInputs";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./style.css";
 
 function SignUp(props) {
-    let [isStrongPassword, setIsStrongPassword] = useState(false);
     const { handleAUTHENTICATE, isLoading } = useAuthContext();
-
-    const handleChangePassword = (e) => {
-        const regex =
-            /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[\]:;<>,.?/~_+\-=|]).{8,32}$/;
-        const password = e.target.value;
-        setIsStrongPassword(regex.test(password));
-        const warningMsg = document.querySelector(".text");
-        const processBar = document.querySelector(".process__bar");
-
-        if (isStrongPassword) {
-            warningMsg.innerHTML = "Strong Password";
-            processBar.style.cssText = "width: 100%; background-color: #1565D8;";
-            warningMsg.style.cssText = "color: #1565D8;";
-        } else if (password.length === 0) {
-            warningMsg.innerHTML = "Please Write a password";
-            processBar.style.cssText = "width: 10%; background-color: #ffc107;";
-            warningMsg.style.cssText = "color: #ffc107;";
-        } else if (password.length < 8) {
-            warningMsg.innerHTML = "I'm sorry, but it's a weak password";
-            processBar.style.cssText = "width: 30%; background-color: #ffc107;";
-            warningMsg.style.cssText = "color: #ffc107;";
-        }
-    };
-
     const {
         register,
         handleSubmit,
@@ -108,59 +84,29 @@ function SignUp(props) {
                     <h1>Register Individual Account!</h1>
                     <p>For the purpose of gamers regulation, your details are r</p>
                     <form onSubmit={handleSubmit(onSubmit)}>
-
-                        <label htmlFor="username">Username*</label>
-                        <input type="text" placeholder="Enter username" id="username" className="username" {...register("name")} />
-                        {errors.name && <span className="error__msg">{errors.name.message}</span>}
-
-                        <label htmlFor="email">Email Address*</label>
-                        <input type="email" placeholder="Enter email address" id="email" className="email" {...register("email")} />
-                        {errors.email && <span className="error__msg">{errors.email.message}</span>}
-
-                        <label htmlFor="phone__number">Phone Number*</label>
-                        <input type="text" placeholder="970 598-844-683" id="phone__number" className="phone__number" {...register("phoneNumber")} />
-                        {errors.phoneNumber && <span className="error__msg">{errors.phoneNumber.message}</span>}
-
-                        <label htmlFor="create__password">Create Password*</label>
-                        <div className="password">
-                            <input type="password" placeholder="password" id="create__password" className="create__password" onChange={handleChangePassword} {...register("password")} />
-                            <div>
-                                <div className="process">
-                                    <div className="process__bar"></div>
-                                </div>
-                                <div className="text">
-                                    You Must Write a Strong Password For Security, Please!
-                                </div>
+                        {INPUTS.map((input) => {
+                            return <div key={input.id} className="input__container">
+                                <label htmlFor={input.id}>{input.label}</label>
+                                <input type={input.type} placeholder={input.placeholder} id={input.id} className={input.class} {...register(input.type)} />
+                                {errors[input["type"]] && <span className="error__msg">{errors[input["type"]].message}</span>}
                             </div>
-                        </div>
-                        {errors.password && <span className="error__msg">{errors.password.message}</span>}
-
-                        <label htmlFor="repeat__password">Repeat password</label>
-                        <input type="password" placeholder="Repeat password" id="repeat__password" className="repeat__password" />
-
+                        })}
                         <div>
-                            <input
-                                type="checkbox"
-                                id="agreement"
-                                className="agreement"
-                                required
-                                {...register("agreement")}
-                            />
+                            <input type="checkbox" id="agreement" className="agreement" required {...register("agreement")} />
                             <label htmlFor="agreement" className="agreement__label">
                                 I agree to terms &amp; conditions
                             </label>
                         </div>
                         {errors.agreement && <span className="error__msg">{errors.agreement.message}</span>}
 
-                        <Button type="submit" componentClassName="register__btn" bgcolor="#1565D8" color="#fff">
+                        <Button type="submit" class="register__btn" bgcolor="#1565D8" color="#fff">
                             {isLoading ? "Loading ..." : "Register Account"}
                         </Button>
                     </form>
                     <OrLine />
-
-                    <button className="login__btn">
+                    <Button class="login__btn">
                         <Link to={PATHS.Auth.SIGNIN}>Login</Link>
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>
@@ -168,4 +114,3 @@ function SignUp(props) {
 }
 
 export default SignUp;
-/*componentClassName="login__btn" bgcolor="#fff" color="#000" shadow="0px 4px 10px 0px rgba(0, 0, 0, 0.08)"*/

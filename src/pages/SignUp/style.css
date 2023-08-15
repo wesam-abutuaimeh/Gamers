@@ -132,7 +132,8 @@ label {
 .agreement__label {
   position: relative;
   padding: 0 35px;
-  margin-top: 5px;
+  margin-bottom: 20px;
+  display: flex;
 }
 .agreement__label::before,
 .agreement__label::after {
