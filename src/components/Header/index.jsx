@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../../router/PATHS'
 import { API_URL } from "../../config/api"
-import { END_POINTS } from '../../constant/auth'
+import { END_POINTS } from '../../constants/auth'
 import useAPI from "../../hooks/useAPI"
 import "./style.css"
 
