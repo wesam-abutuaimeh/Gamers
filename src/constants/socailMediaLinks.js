@@ -1,0 +1,38 @@
+export const socailMediaLinks = [
+  {
+    id: 1,
+    class: "social__media__link",
+    href: "https://google.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    src: "/assets/flat-color-icons_google.png",
+    title: "Google",
+  },
+  {
+    id: 2,
+    class: "social__media__link",
+    href: "https://twitter.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    src: "/assets/logos_twitter.png",
+    title: "Twitter",
+  },
+  {
+    id: 3,
+    class: "social__media__link",
+    href: "https://linkedin.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    src: "/assets/cib_linkedin-in.png",
+    title: "LinkedIn",
+  },
+  {
+    id: 4,
+    class: "social__media__link",
+    href: "https://github.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    src: "/assets/ant-design_github-filled.png",
+    title: "Github",
+  },
+];
