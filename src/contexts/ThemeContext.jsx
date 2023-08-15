@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { THEMES } from "../constant/themes";
+import { THEMES } from "../constants/themes";
 
 const ThemeContext = createContext(null);
 export const useThemeContext = () => useContext(ThemeContext);
