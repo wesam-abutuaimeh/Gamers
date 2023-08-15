@@ -9,6 +9,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 5px #f9f9f9;
+  z-index: 10;
 }
 .alert__name {
   color: red;
@@ -16,7 +17,9 @@
 }
 .alert__body {
   color: #d10;
-  font-size: 18px;
+  font-size: 16px;
+  margin-top: 15px;
+  line-height: 1.7;
 }
 .alert__close {
   background-color: #dc3741;
