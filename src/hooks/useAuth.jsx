@@ -1,11 +1,12 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
-import { ROLES } from "../constant/roles";
+import { ROLES } from "../constants/roles";
 import { API_URL } from "../config/api";
-import { AUTH_ACTIONS, END_POINTS } from "../constant/auth";
+import { AUTH_ACTIONS, END_POINTS } from "../constants/auth";
 
 const getToken = () => { return localStorage.getItem("token") || null }
 const getRole = () => { return localStorage.getItem("role") || ROLES.GUEST }
+
 
 const INIT_STATE = {
     user: null,
@@ -14,6 +15,7 @@ const INIT_STATE = {
     role: getRole(),
     error: null,
     isLoading: false,
+    showAuthAlert: false,
 };
 
 const authReducer = (state, action) => {
@@ -40,18 +42,19 @@ const authReducer = (state, action) => {
                 role: role,
                 isLoading: false,
             };
+        case AUTH_ACTIONS.ALERT:
+            return { ...state, showAuthAlert: true };
         case AUTH_ACTIONS.LOGOUT:
-            ["role", "token"].forEach((item) => {
-                localStorage.removeItem(item);
-            });
+            localStorage.removeItem("role");
+            localStorage.removeItem("token");
             return {
                 user: null,
                 isAuth: false,
-                token: null,
-                role: ROLES.GUEST,
+                token: getToken(),
+                role: getRole(),
                 error: null,
                 isLoading: false,
-            };
+            }
         default:
             return state;
     }
@@ -69,23 +72,16 @@ const useAuth = () => {
         try {
             dispatch({ type: AUTH_ACTIONS.SET_LOADING });
             const { data } = await axios.post(API_URL + endPoint, body);
-            dispatch({
-                type: AUTH_ACTIONS.AUTHENTICATE,
-                payload: data?.data || data,
-                user: data?.data || data,
-            });
+            dispatch({ type: AUTH_ACTIONS.AUTHENTICATE, payload: data });
         } catch (error) {
+            dispatch({ type: AUTH_ACTIONS.ALERT });
             dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
+        } finally {
+            dispatch({ type: AUTH_ACTIONS.ALERT_CLOSE });
         }
     };
-    const logout = async () => {
-        try {
-            dispatch({ type: AUTH_ACTIONS.LOGOUT });
-        }
-        catch (error) {
-            dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
-        }
-    };
+
+    const logout = () => dispatch({ type: AUTH_ACTIONS.LOGOUT });
 
     const getProfileData = async () => {
         const token = localStorage.getItem('token')
