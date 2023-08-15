@@ -5,7 +5,7 @@ export const PATHS = {
   },
   Home: "/home",
   PROFILE: "account",
-  ADMIN: "/settings",
+  ADMIN: "settings",
 
   NOT_FOUND: {
     "*": "*",
