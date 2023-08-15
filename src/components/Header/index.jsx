@@ -6,7 +6,6 @@ import { END_POINTS } from '../../constant/auth'
 import useAPI from "../../hooks/useAPI"
 import "./style.css"
 
-
 const Header = () => {
     const { get, data } = useAPI(API_URL + END_POINTS.PROFILE);
     const config = {
@@ -22,16 +21,15 @@ const Header = () => {
 
     return (
         <header className="header">
+            <div className="user__info">
+                <p>Welcome back,</p>
+                {data.name && <span>{data.name} !</span>}
+            </div>
             <Link to={PATHS.PROFILE}>
-                <div className="user__info">
-                    <p>Welcome back,</p>
-                    {data.name && <span>{data.name} !</span>}
-                </div>
+                <img src="/assets/avatar02.png" alt="avatar" className="avatar" />
             </Link>
-            <img src="/assets/avatar02.png" alt="avatar" className="avatar" />
         </header>
     )
 }
 
 export default Header
-
