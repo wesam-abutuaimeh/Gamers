@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ROLES } from '../../constant/roles';
+import { ROLES } from '../../constants/roles';
 import { useNavigate } from 'react-router-dom';
 import "./style.css"
 
