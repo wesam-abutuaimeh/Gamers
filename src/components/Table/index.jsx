@@ -11,18 +11,17 @@ const Table = ({ columns, data }) => {
             </tr>
         </thead>
         <tbody>
-            {data.map((row, index) => {
-                return <tr key={row.id}>
+            {data?.map((row, index) => (
+                <tr key={row._id + index}>
                     {columns.map((column) => (
-                        <td key={`${row.id + column.key}`}>
-                            {column.render ? column.render(row) : row[column.key]}
+                        <td key={`${row._id + column.key}`}>
+                            {column.render ? column.render(row) : Array.isArray(row[column.key]) ? row[column.key].join(' __ ') : row[column.key]}
                         </td>
-                    ))
-                    }
+                    ))}
                 </tr>
-            })}
+            ))}
         </tbody>
-    </table>
+    </table >
 }
 
 export default Table; 
