@@ -1,91 +1,105 @@
-import { useReducer } from "react";
-import axios from "axios";
+import { useReducer } from 'react';
+import axios from 'axios';
 
-const initalState = {
+const initialState = {
     data: [],
     isLoading: false,
     error: null,
 };
 
-const ACTIONS_TYPE = {
-    FETCH_START: "FETCH_START",
-    FETCH_SUCCESSFUL: "FETCH_SUCCESSFUL",
-    FETCH_ERROR: "FETCH_ERROR",
-    POST: "POST",
-    DELETE: "DELETE",
-    PUT: "PUT",
+const ACTION_TYPES = {
+    FETCH_START: 'FETCH_START',
+    FETCH_SUCCESSFUL: 'FETCH_SUCCESSFUL',
+    FETCH_ERROR: 'FETCH_ERROR',
+    DELETE: 'DELETE',
+    POST: 'POST',
+    PUT: 'PUT',
 };
 
 const apiReducer = (state, action) => {
     switch (action.type) {
-        case ACTIONS_TYPE.FETCH_START:
+        case ACTION_TYPES.FETCH_START:
             return { ...state, isLoading: true };
-        case ACTIONS_TYPE.FETCH_SUCCESSFUL:
+        case ACTION_TYPES.FETCH_SUCCESSFUL:
             return { ...state, data: action.payload, isLoading: false };
-        case ACTIONS_TYPE.FETCH_ERROR:
+        case ACTION_TYPES.FETCH_ERROR:
             return { ...state, isLoading: false, error: action.payload };
-        case ACTIONS_TYPE.POST:
-            return { ...state, data: [...state.data, action.payload], isLoading: false, };
-        case ACTIONS_TYPE.DELETE:
-            return { ...state, data: state.data.filter((item) => item.id !== action.payload), isLoading: false, };
-        case ACTIONS_TYPE.PUT:
+        case ACTION_TYPES.DELETE:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    users: state.data.users.filter((user) => user._id !== action.payload),
+                },
+                isLoading: false,
+            };
+        case ACTION_TYPES.POST:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    users: [...state.data.users, action.payload],
+                },
+                isLoading: false,
+            };
+        case ACTION_TYPES.PUT:
             return { ...state, data: action.payload };
         default:
-            throw Error(`Action Type Error! ${action.type}`);
+            throw new Error(`Action Type Error! ${action.type}`);
     }
 };
 
 const useAPI = (API_URL) => {
-    const [state, dispatch] = useReducer(apiReducer, initalState);
+    const [state, dispatch] = useReducer(apiReducer, initialState);
+
     const get = async (config) => {
         try {
-            dispatch({ type: ACTIONS_TYPE.FETCH_START });
+            dispatch({ type: ACTION_TYPES.FETCH_START });
             const response = await axios.get(API_URL, config);
-            dispatch({ type: ACTIONS_TYPE.FETCH_SUCCESSFUL, payload: response?.data?.data || response?.data });
+            dispatch({
+                type: ACTION_TYPES.FETCH_SUCCESSFUL,
+                payload: response.data.data || response.data,
+            });
         } catch (error) {
-            dispatch({ type: ACTIONS_TYPE.FETCH_ERROR, payload: Error(error) });
+            dispatch({ type: ACTION_TYPES.FETCH_ERROR, payload: error });
         }
     };
-    const getItem = async (id) => {
+
+    const deleteItem = async (id, config) => {
         try {
-            dispatch({ type: ACTIONS_TYPE.FETCH_START });
-            const response = await axios.get(`${API_URL}/${id}`);
-            dispatch({ type: ACTIONS_TYPE.FETCH_SUCCESSFUL, payload: response?.data?.data || response?.data });
+            await axios.delete(`${API_URL}/${id}`, config);
+            dispatch({ type: ACTION_TYPES.DELETE, payload: id });
         } catch (error) {
-            dispatch({ type: ACTIONS_TYPE.FETCH_ERROR, payload: Error(error) });
-        }
-    };
-    const deleteItem = async (id) => {
-        try {
-            await axios.delete(`${API_URL}/${id}`);
-            dispatch({ type: ACTIONS_TYPE.DELETE });
-        } catch (error) {
-            dispatch({ type: ACTIONS_TYPE.FETCH_ERROR, payload: Error(error) });
+            dispatch({ type: ACTION_TYPES.FETCH_ERROR, payload: error });
         }
     };
 
     const post = async (body) => {
         try {
-            dispatch({ type: ACTIONS_TYPE.FETCH_START });
+            dispatch({ type: ACTION_TYPES.FETCH_START });
 
-            const response = await axios.post(`${API_URL}`, body);
-            dispatch({ type: ACTIONS_TYPE.POST, payload: { ...state, data: [...state.data, response.data.data] } });
-
+            const response = await axios.post(API_URL, body);
+            dispatch({ type: ACTION_TYPES.POST, payload: response.data.data });
         } catch (error) {
-            dispatch({ type: ACTIONS_TYPE.FETCH_ERROR, payload: Error(error) });
+            dispatch({ type: ACTION_TYPES.FETCH_ERROR, payload: error });
         }
     };
+
     const put = async (url, data) => {
         try {
             const response = await axios.put(url, data);
-            dispatch({ type: ACTIONS_TYPE.PUT, payload: response.data });
+            dispatch({ type: ACTION_TYPES.PUT, payload: response.data });
         } catch (error) {
-            dispatch({ type: ACTIONS_TYPE.FETCH_ERROR, payload: Error(error) });
+            dispatch({ type: ACTION_TYPES.FETCH_ERROR, payload: error });
         }
     };
+
     return {
         ...state,
-        get, getItem, deleteItem, post, put,
+        get,
+        deleteItem,
+        post,
+        put,
     };
 };
 
