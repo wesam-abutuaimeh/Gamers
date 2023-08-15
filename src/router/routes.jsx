@@ -15,16 +15,12 @@ const adminPages = [
         path: "/",
         element: <AdminGuard />,
         children: [{
-            path: PATHS.ADMIN,
+            path: PATHS.Home,
             element: <HomePage />,
             index: true,
         },
         {
-            path: PATHS.Home,
-            element: <HomePage />,
-        },
-        {
-            path: PATHS.PROFILE,
+            path: PATHS.ADMIN,
             element: <Settings />,
         },
         ]
