@@ -5,15 +5,21 @@ import "./style.css"
 
 const Profile = () => {
     const navigate = useNavigate();
-    useEffect(() => {
-        const role = localStorage.getItem('role');
+
+    const role = localStorage.getItem('role');
+    const checkRoleAndNavigate = () => {
         if (!role || role === ROLES.GUEST) {
             navigate('/login');
             setTimeout(() => {
                 alert('Hey Guest, sign in before!');
             }, 1000);
         }
-    });
+    }
+
+    useEffect(() => {
+        checkRoleAndNavigate()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [role]);
 
     const handleGoHome = () => {
         navigate('/');
