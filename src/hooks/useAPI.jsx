@@ -65,6 +65,19 @@ const useAPI = (API_URL) => {
         }
     };
 
+    const getQuery = async (value, config) => {
+        try {
+            dispatch({ type: ACTION_TYPES.FETCH_START });
+            const response = await axios.get(`${API_URL}?q=${value}`, config);
+            dispatch({
+                type: ACTION_TYPES.FETCH_SUCCESSFUL,
+                payload: response.data.data || response.data,
+            });
+        } catch (error) {
+            dispatch({ type: ACTION_TYPES.FETCH_ERROR, payload: error });
+        }
+    };
+
     const deleteItem = async (id, config) => {
         try {
             await axios.delete(`${API_URL}/${id}`, config);
@@ -97,6 +110,7 @@ const useAPI = (API_URL) => {
     return {
         ...state,
         get,
+        getQuery,
         deleteItem,
         post,
         put,
