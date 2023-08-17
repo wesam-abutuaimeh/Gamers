@@ -25,6 +25,8 @@ function SignUp(props) {
     });
     const onSubmit = async (data) => {
         handleAUTHENTICATE(END_POINTS.SIGNUP, data);
+        console.log(data);
+        console.log('din');
     };
 
     return (
@@ -87,7 +89,7 @@ function SignUp(props) {
                         {INPUTS.map((input) => {
                             return <div key={input.id} className="input__container">
                                 <label htmlFor={input.id}>{input.label}</label>
-                                <input type={input.type} placeholder={input.placeholder} id={input.id} className={input.class} {...register(input.type)} />
+                                <input type={input.type} placeholder={input.placeholder} id={input.id} className={input.class} {...register(input.name)} />
                                 {errors[input["type"]] && <span className="error__msg">{errors[input["type"]].message}</span>}
                             </div>
                         })}

@@ -1,6 +1,7 @@
 export const INPUTS = [
   {
     id: "username",
+    name: "name",
     class: "username",
     label: "Username*",
     type: "text",
@@ -8,6 +9,7 @@ export const INPUTS = [
   },
   {
     id: "email",
+    name: "email",
     class: "email",
     label: "Email Address*",
     type: "email",
@@ -15,6 +17,7 @@ export const INPUTS = [
   },
   {
     id: "phone__number",
+    name: "phoneNumber",
     class: "phone__number",
     label: "Phone Number*",
     type: "text",
@@ -22,6 +25,7 @@ export const INPUTS = [
   },
   {
     id: "create__password",
+    name: "password",
     class: "create__password",
     label: "Create Password*",
     type: "password",
@@ -29,6 +33,7 @@ export const INPUTS = [
   },
   {
     id: "repeat__password",
+    name: "repeatePassword",
     class: "create__password",
     label: "Repeat password",
     type: "password",
