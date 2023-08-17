@@ -27,7 +27,8 @@
   border: 1px solid #ccc;
 }
 .search .search__btn,
-.search .reset__btn {
+.search .reset__btn,
+.pagination-button {
   width: 100px;
   padding: 10px;
   border: none;
@@ -41,9 +42,16 @@
   font-weight: 500;
   cursor: pointer;
 }
-.search .search__btn {
+.search .search__btn,
+.pagination-button {
   background-color: #007fff;
 }
 .search .reset__btn {
   background-color: #00ff7f;
+}
+.pagination {
+  margin-top: 15px;
+}
+.pagination-info {
+  margin: 0 15px;
 }
