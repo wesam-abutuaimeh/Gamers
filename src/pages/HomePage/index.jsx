@@ -8,6 +8,7 @@ import Slider from '../../components/Silder';
 import "./style.css"
 
 const HomePage = () => {
+    document.title = 'Home'
     return (
         <div className='homepage'>
             <Nav />

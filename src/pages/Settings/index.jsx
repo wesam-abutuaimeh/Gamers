@@ -47,7 +47,7 @@ function Setting() {
         loadData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, PER_PAGE]);
-
+    document.title = 'Admin Page'
     return (
         <div className='settings__container'>
             <Nav />

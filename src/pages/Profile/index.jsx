@@ -24,7 +24,7 @@ const Profile = () => {
     const handleGoHome = () => {
         navigate('/');
     };
-
+    document.title = 'Profile'
     return (
         <div className='profile'>
             <p className='note'>
